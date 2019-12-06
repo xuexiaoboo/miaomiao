@@ -1,5 +1,5 @@
 <template>
-  <div class="movie_body">
+  <div class="movie_body" ref="movie_body">
     <Scroll>
       <ul>
         <!-- <li>
@@ -117,9 +117,9 @@
 
         <li v-for="item in comingList" :key="item.id">
           <div class="pic_show">
-            <img :src="item.img | setWH('128.180')" />
+            <img :src="item.img | setWH('128.180')" @tap="handleToDetail(item.id)"/>
           </div>
-          <div class="info_list">
+          <div class="info_list" @tap="handleToDetail(item.id)">
             <h2>{{ item.nm }}</h2>
             <p>
               <span class="person">{{ item.wish }}</span> 人想看
@@ -135,6 +135,8 @@
 </template>
 
 <script>
+import BScroll from "better-scroll";
+
 export default {
   name: "ComingSoon",
 
@@ -152,14 +154,26 @@ export default {
     }
     
     this.axios.get("/api/movieComingList?cityId="+cityId).then(res => {
-      // window.console.log(res);
+      window.console.log(res);
       var msg = res.data.msg;
       if (msg === "ok") {
         this.comingList = res.data.data.comingList;
         this.prevCityId = cityId;
+        this.$nextTick(() => {
+          //js提供，只有在页面渲染完成后才会执行当中的函数
+          new BScroll(this.$refs.movie_body, {
+            tap: true //让tap点击事件生效
+          });
+        });
       }
     });
-  }
+  },
+
+  methods: {
+    handleToDetail(movieId) {
+      this.$router.push('/movie/detail/'+movieId);
+    }
+  },
 };
 </script>
 
