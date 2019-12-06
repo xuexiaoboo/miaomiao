@@ -64,9 +64,10 @@ export default {
 
   watch: {
     message(newVal) {
+      var cityId = this.$store.state.city.id;
       // window.console.log(newVal);
       // 可以做一个函数防抖
-      this.axios.get('/api/searchList?cityId=10&kw='+newVal).then(res => {  //kw是和什么匹配?
+      this.axios.get('/api/searchList?cityId='+ cityId +'&kw='+newVal).then(res => {  //kw是和什么匹配?
         // window.console.log(res);
         var msg = res.data.msg;
         var movies = res.data.data.movies;
