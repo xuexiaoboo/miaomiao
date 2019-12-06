@@ -20,9 +20,9 @@
       <li v-for="item in movieList" :key="item.id">
         <div class="pic_show">
           <!-- 给src加：让他变成js绑定的属性，才可以用js循环出的变量 -->
-          <img :src="item.img | setWH('128.180')" @tap="handleToDetail" />
+          <img :src="item.img | setWH('128.180')" @tap="handleToDetail(item.id)" />
         </div>
-        <div class="info_list">
+        <div class="info_list" @tap="handleToDetail(item.id)">
           <h2>{{ item.nm }}</h2>
           <p>
             观众评
@@ -75,8 +75,10 @@ export default {
   },
 
   methods: {
-    handleToDetail() {
-      window.console.log("handletodetail");
+    handleToDetail(movieId) {
+      // window.console.log("handletodetail");
+      // window.console.log(movieId);
+      this.$router.push('/movie/detail/'+movieId)
     }
   }
 };
