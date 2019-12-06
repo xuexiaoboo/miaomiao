@@ -82,22 +82,28 @@
     </div>-->
 
     <div class="city_list">
-      <Scroll>
         <div class="city_hot">
           <h2>热门城市</h2>
           <ul class="clearfix">
-            <li v-for="item in hotList" :key="item.id" @tap="handleToCity(item.nm, item.id)">{{ item.nm }}</li>
+            <li
+              v-for="item in hotList"
+              :key="item.id"
+              @tap="handleToCity(item.nm, item.id)"
+            >{{ item.nm }}</li>
           </ul>
         </div>
         <div class="city_sort" ref="city_sort">
           <div v-for="item in cityList" :key="item.index">
             <h2>{{ item.index }}</h2>
             <ul>
-              <li v-for="itemList in item.list" :key="itemList.id" @tap="handleToCity(itemList.nm, itemList.id)">{{ itemList.nm }}</li>
+              <li
+                v-for="itemList in item.list"
+                :key="itemList.id"
+                @tap="handleToCity(itemList.nm, itemList.id)"
+              >{{ itemList.nm }}</li>
             </ul>
           </div>
         </div>
-      </Scroll>
     </div>
     <div class="city_index">
       <ul>
@@ -112,6 +118,7 @@
 </template>
 
 <script>
+
 export default {
   name: "City",
 
@@ -211,10 +218,10 @@ export default {
 
     // 状态管理切换城市
     handleToCity(nm, id) {
-      this.$store.commit('city/CITY_INFO', {nm, id});
-      window.localStorage.setItem('nowName', nm);
-      window.localStorage.setItem('nowId', id);
-      this.$router.push('/movie/nowPlaying');
+      this.$store.commit("city/CITY_INFO", { nm, id });
+      window.localStorage.setItem("nowName", nm);
+      window.localStorage.setItem("nowId", id);
+      this.$router.push("/movie/nowPlaying");
     }
   }
 };

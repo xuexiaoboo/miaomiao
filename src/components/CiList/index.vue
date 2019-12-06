@@ -96,7 +96,7 @@
           <div>小吃</div>
           <div>折扣卡</div>
         </div>
-      </li> -->
+      </li>-->
 
       <li v-for="item in cinemaList" :key="item.id">
         <div>
@@ -121,26 +121,27 @@
 <script>
 export default {
   name: "CiList",
-  data () {
+  data() {
     return {
-      cinemaList:[],
-      prevCityId:-1
-    }
+      cinemaList: [],
+      prevCityId: -1
+    };
   },
-  activated () {
+  activated() {
     var cityId = this.$store.state.city.id;
-    if(this.prevCityId === cityId){
+    window.console.log(cityId);
+    if (this.prevCityId === cityId) {
       return;
     }
 
-    this.axios.get('/api/cinemaList?cityId='+cityId).then(res=>{
-      // window.console.log(res);
+    this.axios.get("/api/cinemaList?cityId=" + cityId).then(res => {
+      window.console.log(res);
       var msg = res.data.msg;
-      if(msg === 'ok') {
+      if (msg === "ok") {
         this.cinemaList = res.data.data.cinemas;
         this.prevCityId = cityId;
       }
-    })
+    });
   }
 };
 </script>

@@ -132,13 +132,13 @@ export default {
         var msg = res.data.msg;
         if(msg === 'ok') {
             this.detailMovie = res.data.data.detailMovie;
-            this.$nextTick(()=>{
-                new Swiper(this.$refs.detail_player,  {  //演员照的横向滑动
-                    slidePerView:'auto',
-                    freeMode:true,
-                    freeModeSticky:true,
-                });
-            })
+            // this.$nextTick(()=>{
+            //     new swiper(this.$refs.detail_player,  {  //演员照的横向滑动
+            //         slidePerView:'auto',
+            //         freeMode:true,
+            //         freeModeSticky:true,
+            //     });
+            // })
         }
     })
   }
