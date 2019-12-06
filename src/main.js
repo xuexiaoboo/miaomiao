@@ -11,6 +11,10 @@ Vue.filter('setWH', (url, arg) => {
     return url.replace(/w\.h/, arg);
 })
 
+// 全局申明better-scroll组件
+import Scroll from './components/Scroll'
+Vue.component('Scroll', Scroll)
+
 Vue.config.productionTip = false
 
 new Vue({
